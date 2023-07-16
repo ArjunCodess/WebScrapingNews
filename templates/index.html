@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News App</title>
+    <style>
+            body {
+        font-family: Inter, sans-serif;
+        background-color: #f7f7f7;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .headline-list {
+        display: grid;
+        grid-gap: 20px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .headline-card {
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .headline-card h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.7rem;
+        font-weight: 460;
+      }
+
+      .headline-card a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+
+      @media screen and (min-width: 1024px) {
+        .headline-list {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media screen and (max-width: 1023px) {
+        .headline-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .headline-list {
+          grid-template-columns: unset;
+        }
+
+        .headline-card {
+          width: 100%;
+        }
+      }
+
+      /* Additional CSS */
+.city-form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.city-form input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  font-size: 1.4rem;
+  font-family: Inter, sans-serif;
+  border-radius: 20px;
+}
+
+.city-form input[type="submit"] {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  font-size: 1.4rem;
+  font-family: Inter, sans-serif;
+  border-radius: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .city-form input[type="text"]{
+    width: 400px;
+    font-family: Inter, sans-serif;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .city-form input[type="submit"] {
+    width: 200px;
+    font-family: Inter, sans-serif;
+    border-radius: 20px;
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .city-form input[type="text"]{
+    width: 400px;
+    font-size: 10rem;
+    font-family: Inter, sans-serif;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .city-form input[type="submit"] {
+    width: 200px;
+    font-size: 10rem;
+    font-family: Inter, sans-serif;
+    border-radius: 20px;
+    padding: 20px;
+  }
+}
+
+      h3 {
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+
+
+    </style>
+</head>
+<body>
+<br>
+<div class="city-form">
+    <form method="POST" action="/">
+        <input type="text" name="city" placeholder="Enter city" required>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<br>
+<br>
+{% if news %}
+<h1>Headlines: {{ city }}</h1>
+<ul class="headline-list">
+    {% for article in news %}
+    <li class="headline-card">
+        <h3>{{ article['headline'] }}</h3>
+        {% if article['link'] %}
+        <a href="{{ article['link'] }}">Read More</a>
+        {% else %}
+        <span class="not-available">N/A</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>Enter a City to Get the Latest Headlines</h1>
+<br>
+<br>
+<h3>The supported cities are as follows</h3>
+<p>Aurangabad
+    Bareilly |
+    Bhubaneswar |
+    Bhopal |
+    Chandigarh |
+    Coimbatore |
+    Cuttack |
+    Dehradun |
+    Erode |
+    Faridabad |
+    Ghaziabad |
+    Goa |
+    Gurgaon |
+    Guwahati |
+    Hubballi |
+    Imphal |
+    Indore |
+    Itanagar |
+    Jaipur |
+    Jammu |
+    Jamshedpur |
+    Jodhpur |
+    Kanpur |
+    Kochi |
+    Kohima |
+    Kolhapur |
+    Kozhikode |
+    Ludhiana |
+    Lucknow |
+    Madurai |
+    Mangaluru |
+    Meerut |
+    Mumbai Region |
+    Mysuru |
+    Nagpur |
+    Nashik |
+    Navi Mumbai |
+    Noida |
+    Patna |
+    Puducherry |
+    Pune |
+    Raipur |
+    Rajkot |
+    Ranchi |
+    Thane |
+    Salem |
+    Shillong |
+    Shimla |
+    Srinagar |
+    Surat |
+    Trichy |
+    Thiruvananthapuram |
+    Udaipur |
+    Vadodara |
+    Varanasi |
+    Vijayawada |
+    Visakhapatnam
+    Mumbai |
+    Delhi |
+    Bengaluru |
+    Kolkata |
+    Hyderabad |
+    Chennai |
+    Agra |
+    Agartala |
+    Ahmedabad |
+    Ajmer |
+    Allahabad |
+    Amaravati |
+    Amritsar |
+</p>
+{% endif %}
+</body>
+</html>
